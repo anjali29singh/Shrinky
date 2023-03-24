@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta
+    charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Shriky
+  </title>
+  <style>
+
+    body {
+      background-color: rgb(108, 242, 244);
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+
+
+    }
+
+  .heading {
+
+    color: rgb(4, 21, 103);
+    font-family: 'Times New Roman', Times, serif
+    }
+
+    .lable {
+      color: rgb(43, 45, 70);
+      font-size: larger;
+      font-weight: 400;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .input-url {
+      margin-left: 5px;
+      outline: none;
+      height: 5vh;
+      border-radius: 10px;
+      color: rgb(45, 50, 54);
+      width: 20vw;
+    }
+
+    .shrink-button {
+      background-color: rgb(5, 36, 99);
+      height: 5vh;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      color: white;
+
+    
+    }
+    .button:active{
+      background-color: rgb(11, 29, 198);
+    }
+
+    .gap {
+      height: 3vh;
+    }
+
+    .shrink-container {
+      display: flex;
+      flex-direction: row;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: darkslategrey;
+      align-items: center;
+
+
+    }
+
+    .shrink-url-box {
+      border-width: 5cm;
+      background-color: white;
+      border-radius: 10px;
+      height: 6vh;
+      text-align: center;
+      width:fit-content;
+      margin-left: 5px;
+      padding-top: 3.5%;
+    }
+    .shrink-url{
+      width: max-content;
+    
+    }
+    a {
+      align-self: center;
+
+    }
+
+    /* .hidden{
+        display: none;
+       } */
+  </style>
+</head>
+
+<body>
+  <h1
+    class="heading">
+    SHRINKY</h1>
+  <div
+    class="main-container">
+    <form>
+      <label
+        for="name"
+        class="lable">URL</label>
+      <input
+        type="url"
+        class="input-url fullUrl"
+        name="url">
+      <button
+        type="submit"
+        class="shrink-button">Shrink</button>
+    </form>
+    <div
+      class="gap">
+
+    </div>
+    <div
+      class="shrink-container hidden">
+      <h3 class="shrink-url-head">
+        Shrink URL
+      </h3>
+      <div
+        class="shrink-url-box">
+        <a href="/"
+          target="_blank"
+          type="url"
+          class="shrink-url"></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const button=document.querySelector('.shrink-button')
+    const shrinkContainer=document.querySelector('.shrink-container')
+    const shrinkUrl =document.querySelector('.shrink-url')
+    const inputUrl=document.querySelector('.input-url')
+  
+
+
+    function modify(shortUrl){
+
+      inputUrl.value=""
+      shrinkUrl.innerHTML=`http://localhost:5000/${shortUrl}`
+      shrinkUrl.setAttribute('href',shortUrl)
+     
+
+    }
+    async function postData(url,data){
+      const response = await fetch(url,{
+        method:'POST',
+        credentials:'include',
+        headers:{
+          'Content-type':'application/json'
+        },
+        body:JSON.stringify(data)
+      }
+      )
+      const responseData = await response.json()
+      return responseData
+    }
+
+   button.addEventListener('click',function(e){
+      e.preventDefault();
+
+      const url=inputUrl.value
+     
+     postData('http://localhost:5000/shrinkUrls',{fullUrl:url}).then((data)=> {modify(data.shortUrl);
+    console.log(data)})
+     
+    
+
+    })
+
+
+  </script>
+
+</body>
+
+</html>
