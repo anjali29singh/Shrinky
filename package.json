@@ -1,20 +1,29 @@
 {
   "name": "url-shorty",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "mongoose": "^7.0.2",
+    "mongoose": "^7.0.3",
     "shortid": "^2.2.16"
   },
   "devDependencies": {
-    "nodemon": "^2.0.21"
-  }
+    "nodemon": "^2.0.22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anjali29singh/Shrinky.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anjali29singh/Shrinky/issues"
+  },
+  "homepage": "https://github.com/anjali29singh/Shrinky#readme",
+  "description": ""
 }

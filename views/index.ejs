@@ -12,56 +12,73 @@
     content="width=device-width, initial-scale=1.0">
   <title>Shriky
   </title>
+
+
   <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 
     body {
       background-color: rgb(108, 242, 244);
+      display: flex;
+      flex-direction:column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20vh;
+      
     }
 
     .main-container {
       display: flex;
-      flex-direction: column;
+      flex-direction:column;
       justify-content: center;
       align-items: center;
-      height: 80vh;
-
-
+      
+      /* height: 80vh;    */
     }
 
   .heading {
 
     color: rgb(4, 21, 103);
-    font-family: 'Times New Roman', Times, serif
-    }
-
+    font-family: 'Poppins', sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+    
+  }
+ 
     .lable {
-      color: rgb(43, 45, 70);
+      color: rgb(4, 4, 141);    
       font-size: larger;
-      font-weight: 400;
-      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
     }
 
     .input-url {
+      margin-top: 20px;
       margin-left: 5px;
       outline: none;
       height: 5vh;
       border-radius: 10px;
       color: rgb(45, 50, 54);
       width: 20vw;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
     }
 
     .shrink-button {
-      background-color: rgb(5, 36, 99);
+      background-color:rgb(8, 121, 32);
       height: 5vh;
       border-radius: 3px;
       border: none;
       cursor: pointer;
       color: white;
+      font-family: 'Poppins', sans-serif;
 
     
     }
-    .button:active{
-      background-color: rgb(11, 29, 198);
+    .shrink-button:active{
+      background-color: rgb(12, 140, 55);
     }
 
     .gap {
@@ -71,8 +88,8 @@
     .shrink-container {
       display: flex;
       flex-direction: row;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      color: darkslategrey;
+      color: rgb(4, 4, 141);
+      font-family: 'Poppins', sans-serif;
       align-items: center;
 
 
@@ -82,15 +99,12 @@
       border-width: 5cm;
       background-color: white;
       border-radius: 10px;
-      height: 6vh;
-      text-align: center;
-      width:fit-content;
-      margin-left: 5px;
-      padding-top: 3.5%;
-    }
-    .shrink-url{
+      height: 4vh;
+      text-align: center; 
       width: max-content;
-    
+     
+      margin-left: 25px;
+      padding-top: 3.5%;
     }
     a {
       align-self: center;
@@ -100,14 +114,58 @@
     /* .hidden{
         display: none;
        } */
+       @media screen and (max-width: 800px) {
+    body {
+      margin-top: 10vh;
+    }
+    .input-url {
+      width: 80%;
+    }
+    .shrink-container {
+      flex-direction: column;
+      margin-top: 20px;
+    }
+    .shrink-url-box {
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    body {
+      margin-top: 5vh;
+    }
+    .heading {
+      font-size: large;
+    }
+    .lable {
+      font-size: medium;
+    }
+    .input-url {
+      width: 80%;
+    }
+    .shrink-button {
+      font-size: small;
+      margin-top: 20px;
+      margin-left: 40vw;
+    }
+    .shrink-container {
+      flex-direction: column;
+      
+    }
+    .shrink-url-box {
+      margin-left: 0;
+    }
+  }
+
+
   </style>
 </head>
 
 <body>
-  <h1
-    class="heading">
-    SHRINKY</h1>
   <div
+    class="heading">
+    SHRINKY</div>
+    <div
     class="main-container">
     <form>
       <label
@@ -127,7 +185,7 @@
     </div>
     <div
       class="shrink-container hidden">
-      <h3 class="shrink-url-head">
+      <h3 class="shrink-url-head hidden">
         Shrink URL
       </h3>
       <div
@@ -156,6 +214,12 @@
      
 
     }
+
+
+    function showError(){
+      
+      
+    }
     async function postData(url,data){
       const response = await fetch(url,{
         method:'POST',
@@ -174,6 +238,9 @@
       e.preventDefault();
 
       const url=inputUrl.value
+      if(url===""){
+        showError()
+      }
      
      postData('http://localhost:5000/shrinkUrls',{fullUrl:url}).then((data)=> {modify(data.shortUrl);
     console.log(data)})

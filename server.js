@@ -5,10 +5,12 @@ const urlCollection=require('./db/shrinkUrl')
 const app =express()
 
 
-mongoose.connect('mongodb://localhost/shrinkUrl',{
+mongoose.connect('mongodb://admin:admin@localhost:27017',{
     useNewUrlParser:true,
     useUnifiedTopology: true
 })
+
+app.use('/logo/logo1.jpg',express.static('./logo/logo1.jpg'))
 
 app.set('view engine','ejs')
 
