@@ -92,28 +92,41 @@
       font-family: 'Poppins', sans-serif;
       align-items: center;
 
-
     }
 
     .shrink-url-box {
       border-width: 5cm;
-      background-color: white;
+      background-color:whitesmoke;
       border-radius: 10px;
       height: 4vh;
       text-align: center; 
-      width: max-content;
+      width:max-content;
      
       margin-left: 25px;
       padding-top: 3.5%;
     }
     a {
       align-self: center;
+      color:rgb(18, 15, 15);
+      margin-bottom: 10px;
 
     }
 
-    /* .hidden{
+    .hidden{
         display: none;
-       } */
+       }
+
+
+      .error{
+        background-color: aliceblue;
+        color: red;
+        width: 200px;
+        border-radius: 10px;
+        padding-left: 20px;
+
+
+
+      }
        @media screen and (max-width: 800px) {
     body {
       margin-top: 10vh;
@@ -183,9 +196,13 @@
       class="gap">
 
     </div>
+    <div class="error hidden">
+      <p>Please enter valid url</p>
+
+    </div>
     <div
       class="shrink-container hidden">
-      <h3 class="shrink-url-head hidden">
+      <h3 class="shrink-url-head">
         Shrink URL
       </h3>
       <div
@@ -196,19 +213,22 @@
           class="shrink-url"></a>
       </div>
     </div>
+   
   </div>
 
   <script>
-    const button=document.querySelector('.shrink-button')
-    const shrinkContainer=document.querySelector('.shrink-container')
-    const shrinkUrl =document.querySelector('.shrink-url')
-    const inputUrl=document.querySelector('.input-url')
+    const button = document.querySelector('.shrink-button')
+    const shrinkContainer= document.querySelector('.shrink-container')
+    const shrinkUrl = document.querySelector('.shrink-url')
+    const inputUrl= document.querySelector('.input-url')
+    const error =document.querySelector('.error')
   
 
 
     function modify(shortUrl){
 
       inputUrl.value=""
+      removeError()
       shrinkUrl.innerHTML=`http://localhost:5000/${shortUrl}`
       shrinkUrl.setAttribute('href',shortUrl)
      
@@ -217,8 +237,14 @@
 
 
     function showError(){
+      error.classList.remove('hidden')
+      //hide shrinkUrl 
+      shrinkContainer.classList.add('hidden')
       
-      
+    }
+
+    function removeError(){
+      error.classList.add('hidden')
     }
     async function postData(url,data){
       const response = await fetch(url,{
@@ -237,15 +263,23 @@
    button.addEventListener('click',function(e){
       e.preventDefault();
 
+
+
+     
+
       const url=inputUrl.value
       if(url===""){
         showError()
       }
-     
+
+      else
+      { 
+
+        shrinkContainer.classList.remove('hidden')
      postData('http://localhost:5000/shrinkUrls',{fullUrl:url}).then((data)=> {modify(data.shortUrl);
     console.log(data)})
      
-    
+      }
 
     })
 
