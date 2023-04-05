@@ -237,6 +237,7 @@
 
 
     function showError(){
+
       error.classList.remove('hidden')
       //hide shrinkUrl 
       shrinkContainer.classList.add('hidden')
@@ -244,7 +245,10 @@
     }
 
     function removeError(){
+
       error.classList.add('hidden')
+      //After error is removed then display shrinkUlr 
+        
     }
     async function postData(url,data){
       const response = await fetch(url,{
@@ -263,10 +267,6 @@
    button.addEventListener('click',function(e){
       e.preventDefault();
 
-
-
-     
-
       const url=inputUrl.value
       if(url===""){
         showError()
@@ -277,12 +277,10 @@
 
         shrinkContainer.classList.remove('hidden')
      postData('http://localhost:5000/shrinkUrls',{fullUrl:url}).then((data)=> {modify(data.shortUrl);
-    console.log(data)})
-     
+    console.log(data)
+      })
       }
-
     })
-
 
   </script>
 

@@ -1,11 +1,13 @@
+const dotenv = require("dotenv")
+dotenv.config();
+
 const express = require('express')
 const mongoose =require('mongoose')
 
 const urlCollection=require('./db/shrinkUrl')
 const app =express()
 
-
-mongoose.connect('mongodb://admin:admin@localhost:27017',{
+mongoose.connect(process.env.MONGO_CONN,{
     useNewUrlParser:true,
     useUnifiedTopology: true
 })

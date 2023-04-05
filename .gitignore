@@ -1,3 +1,4 @@
 node_modules
 run_mongosh.sh
-mongo-data
+mongo-db-urls
+.env
