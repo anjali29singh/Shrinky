@@ -229,12 +229,15 @@
 
       inputUrl.value=""
       removeError()
-      shrinkUrl.innerHTML=`http://localhost:5000/${shortUrl}`
+      //for localhost
+      // shrinkUrl.innerHTML=`http://localhost:5000/${shortUrl}`
+      
+      
+      shrinkUrl.innerHTML=`http://anjali29singh.tech:5000/${shortUrl}`
       shrinkUrl.setAttribute('href',shortUrl)
      
 
     }
-
 
     function showError(){
 
@@ -276,7 +279,7 @@
       { 
 
         shrinkContainer.classList.remove('hidden')
-     postData('http://localhost:5000/shrinkUrls',{fullUrl:url}).then((data)=> {modify(data.shortUrl);
+     postData('http://anjali29singh:5000/shrinkUrls',{fullUrl:url}).then((data)=> {modify(data.shortUrl);
     console.log(data)
       })
       }
