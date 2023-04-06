@@ -233,7 +233,7 @@
       // shrinkUrl.innerHTML=`http://localhost:5000/${shortUrl}`
       
       
-      shrinkUrl.innerHTML=`http://anjali29singh.tech:5000/${shortUrl}`
+      shrinkUrl.innerHTML=`http://anjali29singh.tech/${shortUrl}`
       shrinkUrl.setAttribute('href',shortUrl)
      
 
@@ -279,7 +279,7 @@
       { 
 
         shrinkContainer.classList.remove('hidden')
-     postData('http://anjali29singh:5000/shrinkUrls',{fullUrl:url}).then((data)=> {modify(data.shortUrl);
+     postData('http://anjali29singh.tech/shrinkUrls',{fullUrl:url}).then((data)=> {modify(data.shortUrl);
     console.log(data)
       })
       }

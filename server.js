@@ -3,6 +3,8 @@ dotenv.config();
 
 const express = require('express')
 const mongoose =require('mongoose')
+const cors =require('cors')
+
 
 const urlCollection=require('./db/shrinkUrl')
 const app =express()
@@ -12,6 +14,12 @@ mongoose.connect(process.env.MONGO_CONN,{
     useUnifiedTopology: true
 })
 
+app.use(
+    cors({
+        origin:"*",
+        credentials:true,
+    })
+)
 
 app.set('view engine','ejs')
 
