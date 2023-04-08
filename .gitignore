@@ -1,4 +1,5 @@
 node_modules
-*.sh
+run_mongos.sh
+run_shrinky.sh
 mongo-db-urls
 .env
